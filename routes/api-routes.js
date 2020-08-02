@@ -20,7 +20,10 @@ module.exports = function(app) {
   app.post("/api/signup", function(req, res) {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      username: req.body.username,
+      clss: req.body.clss,
+      role: req.body.role
     })
       .then(function() {
         res.redirect(307, "/api/login");
@@ -49,5 +52,17 @@ module.exports = function(app) {
         id: req.user.id
       });
     }
+  });
+
+  app.post("/api/teams", function(req, res) {
+    db.Team.create({
+      name: req.body.teamname,
+      members: req.body.members,
+      UserId: req.body.UserId
+    })
+  });
+
+  app.get("/api/teams", function(req, res) {
+
   });
 };
