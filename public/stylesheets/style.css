@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 body {
   background-image: url("Deathwing.jpg"); 
   background-size: cover;
   background-color: black;
-=======
-body{
-  background-image: url("https://th.bing.com/th/id/OIP.pAaJQ9FvQqQcV_4aJesvSQHaEK?pid=Api&rs=1"); 
-  background-size: 100%;
->>>>>>> b64dbb63766eb530207eab95c271f1765b611964
   background-repeat: no-repeat;
-  background-color: black;
 }
 
 .background {
