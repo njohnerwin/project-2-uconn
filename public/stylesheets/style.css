@@ -1,31 +1,30 @@
-body{
+body {
   background-image: url("Deathwing.jpg"); 
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background-size: cover;
   background-color: black;
+  background-repeat: no-repeat;
 }
 
-.background{
-background-color: rgb(77, 166, 255);
-opacity: 0.95;
-filter: a;
-margin-left: 20%;
-margin-right: 20%;
-margin-top: 10%;
-padding: 5%;
-border-radius: 10px;
-
+.background {
+  background-color: rgb(77, 166, 255);
+  opacity: 0.95;
+  filter: a;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 10%;
+  padding: 5%;
+  border-radius: 10px;
 }
-.padding{
-padding-top: 5px;
-padding-bottom: 5px;
 
+.padding {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-.text{
 
+.text {
   text-align: center;
-
 }
+
 footer {
   position: fixed;
   left: 0;
@@ -34,4 +33,4 @@ footer {
   background-color: rgb(65, 74, 99);
   color: rgb(65, 74, 99);
   text-align: center;
-  }
+}
