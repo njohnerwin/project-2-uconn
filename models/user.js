@@ -16,15 +16,15 @@ module.exports = function (sequelize, DataTypes) {
     },
     Username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     Clss: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     Role: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   });
   

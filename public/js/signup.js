@@ -42,14 +42,14 @@ $(document).ready(function () {
 
     })
       .then(function (data) {
-        window.location.replace("/members");
+        window.location.replace("/teamlist");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    $("#alert .msg").text("That user already exists");
     $("#alert").fadeIn(500);
   }
 });
