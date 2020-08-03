@@ -13,18 +13,6 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    Username: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    Clss: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    Role: {
-      type: DataTypes.STRING,
-      allowNull: true
     }
   });
   
@@ -43,6 +31,12 @@ module.exports = function (sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
+
+  /*User.associate = function(models) {
+    User.hasOne(models.Character, {
+      onDelete: "cascade"
+    });
+  };*/
 
   return User;
 };
