@@ -28,9 +28,8 @@ $(document).ready(function() {
       email: email,
       password: password
     })
-      .then(function() {
-        window.location.replace("/members");
-        // If there's an error, log the error
+      .then(function (data) {
+        window.location.replace("/teamlist");
       })
       .catch(function(err) {
         console.log(err);

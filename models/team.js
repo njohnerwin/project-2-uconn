@@ -3,8 +3,15 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
     },
+    members: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   });
 
   Team.associate = function(models) {
