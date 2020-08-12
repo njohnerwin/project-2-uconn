@@ -3,8 +3,10 @@ $(document).ready(function() {
   const submitButton = $("#submit-team");
   let uid;
 
+  getTeamList();
+
   submitButton.on("click", function(event) {
-    handleFormSubmit(event);
+    handleTeamSubmit(event);
   })
   
   // This file just does a GET request to figure out which user is logged in
@@ -14,15 +16,11 @@ $(document).ready(function() {
     uid = data.id;
   });
 
-  function handleFormSubmit(event) {
+  function handleTeamSubmit(event) {
     event.preventDefault();
 
     let teamname = $("#team-name").val().trim();
     let members = [];
-    
-
-    console.log(teamname);
-    console.log(uid);
 
     if (!teamname) {
       return;
@@ -44,4 +42,13 @@ $(document).ready(function() {
       method: "POST"
     });
   }
+
+  function getTeamList() {
+    $.get("/api/teams", function(data) {
+      $("#teamlist").append($(`
+      <p>${data}</p>
+      `))
+    })
+  }
+
 });
