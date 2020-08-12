@@ -69,6 +69,8 @@ module.exports = function(app) {
   });
 
   app.get("/api/teams", function(req, res) {
-
+    console.log(req);
+    teamArray = [];
+    db.Team.findAll({}).then(function() {})
   });
 };
