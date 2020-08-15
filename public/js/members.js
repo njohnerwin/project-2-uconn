@@ -3,6 +3,8 @@ $(document).ready(function() {
   const submitButton = $("#submit-team");
   let uid;
 
+  getTeamList(uid);
+
   //When Submit is clicked, handleTeamSubmit
   submitButton.on("click", function(event) {
     handleTeamSubmit(event);
