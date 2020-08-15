@@ -68,9 +68,14 @@ module.exports = function(app) {
     })
   });
 
-  app.get("/api/teams", function(req, res) {
-    console.log(req);
+  /*app.get("/api/teams/:uid", function(req, res) {
     teamArray = [];
-    db.Team.findAll({}).then(function() {})
-  });
+    db.Team.findAll({
+      where: {
+        UserId: req.params.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });*/
 };

@@ -3,8 +3,7 @@ $(document).ready(function() {
   const submitButton = $("#submit-team");
   let uid;
 
-  getTeamList();
-
+  //When Submit is clicked, handleTeamSubmit
   submitButton.on("click", function(event) {
     handleTeamSubmit(event);
   })
@@ -14,8 +13,10 @@ $(document).ready(function() {
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
     uid = data.id;
+    getTeamList(uid);
   });
 
+  //sends a new team to the Teams table
   function handleTeamSubmit(event) {
     event.preventDefault();
 
@@ -35,6 +36,7 @@ $(document).ready(function() {
     submitTeam(newTeam)
   }
 
+  //Teams API POST call
   function submitTeam(newTeam) {
     return $.ajax({
       url: "api/teams",
@@ -43,11 +45,10 @@ $(document).ready(function() {
     });
   }
 
-  function getTeamList() {
-    $.get("/api/teams", function(data) {
-      $("#teamlist").append($(`
-      <p>${data}</p>
-      `))
+  //Teams API GET Call
+  function getTeamList(uid) {
+    $.get("/api/teams/" + uid, function(data) {
+      console.log("Successful GET: " + data);
     })
   }
 
