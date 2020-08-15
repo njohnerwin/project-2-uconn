@@ -13,16 +13,20 @@ $(document).ready(function () {
     var userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
+    };
+
+    var charData = {
       username: usernameInput.val().trim(),
       clss: clssInput.val().trim(),
       role: roleInput.val().trim()
-    };
+    }
 
-    if (!userData.email || !userData.password || !userData.username || !userData.clss || !userData.role) {
+    if (!userData.email || !userData.password) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password, userData.username, userData.clss, userData.role);
+    signUpChar(userData.email, charData.username, charData.clss, charData.role)
+    signUpUser(userData.email, userData.password);
     emailInput.val("");
     passwordInput.val("");
     usernameInput.val("");
@@ -32,24 +36,28 @@ $(document).ready(function () {
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password, username, clss, role) {
-    $.post("/api/signup", {
+  function signUpChar(email, username, clss, role) {
+    $.post("/api/signchar", {
       email: email,
-      password: password,
       username: username,
       clss: clss,
       role: role
-
-    })
-      .then(function (data) {
-        window.location.replace("/members");
+    });
+  }
+  
+  function signUpUser(email, password) {
+    $.post("/api/signup", {
+      email: email,
+      password: password,
+    }).then(function (data) {
+        window.location.replace("/teamlist");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    $("#alert .msg").text("That user already exists");
     $("#alert").fadeIn(500);
   }
 });

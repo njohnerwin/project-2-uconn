@@ -14,6 +14,16 @@ module.exports = function(app) {
     });
   });
 
+
+  app.post("/api/signchar", function(req, res) {
+    db.Character.create({
+      username: req.body.username,
+      clss: req.body.clss,
+      role: req.body.role,
+      email: req.body.email
+    })
+  });
+
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -21,13 +31,11 @@ module.exports = function(app) {
     db.User.create({
       email: req.body.email,
       password: req.body.password
-    })
-      .then(function() {
-        res.redirect(307, "/api/login");
-      })
-      .catch(function(err) {
-        res.status(401).json(err);
-      });
+    }).then(function() {
+      res.redirect(307, "/api/login");
+    }).catch(function(err) {
+      res.status(401).json(err);
+    });
   });
 
   // Route for logging user out
@@ -49,5 +57,18 @@ module.exports = function(app) {
         id: req.user.id
       });
     }
+  });
+
+  app.post("/api/teams", function(req, res) {
+    console.log(req.body);
+    db.Team.create({
+      name: req.body.name,
+      members: req.body.members,
+      UserId: req.body.UserId
+    })
+  });
+
+  app.get("/api/teams", function(req, res) {
+
   });
 };

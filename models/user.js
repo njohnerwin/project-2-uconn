@@ -13,18 +13,6 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    Username: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    Clss: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    Role: {
-      type: DataTypes.STRING,
-      allowNull: false
     }
   });
   
@@ -39,12 +27,16 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   User.associate = function(models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
     User.hasMany(models.Team, {
       onDelete: "cascade"
     });
   };
+
+  /*User.associate = function(models) {
+    User.hasOne(models.Character, {
+      onDelete: "cascade"
+    });
+  };*/
 
   return User;
 };
