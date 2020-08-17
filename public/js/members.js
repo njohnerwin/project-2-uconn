@@ -9,7 +9,7 @@ $(document).ready(function() {
   $("#submit-team").on("click", function(event) {
     console.log("SUBMIT button clicked!!!");
     handleTeamSubmit(event);
-    getTeamList(uid);
+    window.location.replace("/teamlist");
   })
 
   $("#team-list").on("click", ".delete-button", function(event) {
@@ -69,19 +69,17 @@ $(document).ready(function() {
   //Teams API POST call
   function submitTeam(newTeam) {
     return $.ajax({
+      method: "POST",
       url: "api/teams",
-      data: newTeam,
-      method: "POST"
-    });
+      data: newTeam
+    }).then(function() {getTeamList(uid)});
   }
 
   function handleTeamDelete(id) {
     $.ajax({
       method: "DELETE",
       url: "/api/teams/" + id
-    }).then(function() {
-      getTeamList(uid);
-    })
+    }).then(function() {getTeamList(uid)});
   }
 
 });
