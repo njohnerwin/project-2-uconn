@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // Getting references to our form and inputs
-  var loginButton = $("#loginbutton");
+  var loginButton = $("#login-button");
   var emailInput = $("#email-input");
   var passwordInput = $("#password-input");
 
