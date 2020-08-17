@@ -87,4 +87,17 @@ module.exports = function(app) {
       res.json(JSON.stringify(teamList));
     });
   });
+
+  app.delete("/api/teams/:id", function(req, res) {
+    console.log("DEBUG LOG: Deleting team at ID: " + req.params.id);
+    db.Team.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbTeam) {
+      res.json(dbTeam);
+    });
+  });
+
+  
 };
