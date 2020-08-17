@@ -28,7 +28,7 @@ $(document).ready(function() {
       email: email,
       password: password
     })
-      .then(function (data) {
+      .then(function () {
         window.location.replace("/teamlist");
       })
       .catch(function(err) {
