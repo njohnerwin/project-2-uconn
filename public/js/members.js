@@ -1,22 +1,28 @@
 $(document).ready(function() {
 
-  const submitButton = $("#submit-team");
+  //We declare user ID in the global scope, but assign its value later
   let uid;
 
-  //When Submit is clicked, handleTeamSubmit
-  submitButton.on("click", function(event) {
-    handleTeamSubmit(event);
-  })
-  
   // This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
+  // and updates the HTML on the page, as well as passing uid its value
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
     uid = data.id;
     getTeamList(uid);
   });
 
-  //sends a new team to the Teams table
+  //When Submit is clicked, handleTeamSubmit
+  $("#submit-team").on("click", function(event) {
+    console.log("SUBMIT button clicked!!!");
+    handleTeamSubmit(event);
+  })
+
+  $("#team-list").on("click", ".delete-button", function(event) {
+    console.log("DELETE button clicked!!!");
+    handleTeamDelete(event.target.id);
+  })
+
+  //sends a new team to the Teams table with the user's inputted name
   function handleTeamSubmit(event) {
     event.preventDefault();
 
@@ -36,20 +42,49 @@ $(document).ready(function() {
     submitTeam(newTeam)
   }
 
+  //Teams API GET Call
+  function getTeamList(uid) {
+
+    $.get("/api/teams/" + uid, function(data) {
+      console.log("Successful GET: " + data);
+
+      //We empty the team-list div so we can keep it updated properly
+      //Then, we add (or re-add) a header for readability
+      $("#team-list").empty();
+      $("#team-list").append($("<h3>Current Teams:<h3>"));
+
+      //The data is a JSON string, but we need it to be an array
+      let teamlist = JSON.parse(data);
+
+      //Loops through the list, creating a new HTML card for each team
+      for (x in teamlist) {
+        let newTeamCard = $("<p>");
+        let deleteButton = $("<button>");
+        deleteButton.text("X");
+        deleteButton.attr("class", "delete-button");
+        deleteButton.attr("id", teamlist[x].id);
+        newTeamCard.text(teamlist[x].name);
+        newTeamCard.append(deleteButton);
+        $("#team-list").append(newTeamCard);
+      }
+    })
+  }
+
   //Teams API POST call
   function submitTeam(newTeam) {
     return $.ajax({
+      method: "POST",
       url: "api/teams",
-      data: newTeam,
-      method: "POST"
-    });
+      data: newTeam
+    }).then(function() {getTeamList(uid)});
   }
 
-  //Teams API GET Call
-  function getTeamList(uid) {
-    $.get("/api/teams/" + uid, function(data) {
-      console.log("Successful GET: " + data);
-    })
+  //Teams API DELETE call
+  function handleTeamDelete(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/teams/" + id
+    }).then(function() {getTeamList(uid)});
   }
 
 });
