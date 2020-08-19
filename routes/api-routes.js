@@ -65,7 +65,9 @@ module.exports = function(app) {
       name: req.body.name,
       members: req.body.members,
       UserId: req.body.UserId
-    })
+    }).then(function(dbTeam) {
+      res.json(dbTeam);
+    });
   });
 
   app.get("/api/teams/:uid", function(req, res) {
@@ -99,5 +101,7 @@ module.exports = function(app) {
     });
   });
 
-  
+  app.delete
+
+
 };
