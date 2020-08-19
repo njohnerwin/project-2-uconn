@@ -68,7 +68,36 @@ module.exports = function(app) {
     })
   });
 
-  app.get("/api/teams", function(req, res) {
-
+  app.get("/api/teams/:uid", function(req, res) {
+    console.log("DEBUG LOG: Searching for teams by ID: " + req.params.uid);
+    teamArray = [];
+    db.Team.findAll({
+      where: {
+        UserId: req.params.uid
+      }
+    }).then(function(data) {
+      let teamList = [];
+      for (x in data) {
+        let team = {
+          id: data[x].id,
+          name: data[x].name
+        };
+        teamList.push(team);
+      }
+      res.json(JSON.stringify(teamList));
+    });
   });
+
+  app.delete("/api/teams/:id", function(req, res) {
+    console.log("DEBUG LOG: Deleting team at ID: " + req.params.id);
+    db.Team.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbTeam) {
+      res.json(dbTeam);
+    });
+  });
+
+  
 };
