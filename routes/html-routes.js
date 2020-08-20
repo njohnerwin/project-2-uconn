@@ -11,7 +11,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/teamlist");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.render("index");
   });
 
   app.get("/signup", function(req, res) {
@@ -19,13 +19,13 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/teamlist");
     }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.render("signup");
   });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/teamlist", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("teamlist");
   });
 
   app.get("/teaminfo", function(req, res) {
