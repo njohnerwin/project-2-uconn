@@ -3,6 +3,7 @@ var path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+const db = require("../models");
 
 module.exports = function(app) {
 
@@ -19,7 +20,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/teamlist");
     }
-    res.render("signup");
+    res.render("signup"); 
   });
 
   // Here we've add our isAuthenticated middleware to this route.
@@ -28,12 +29,37 @@ module.exports = function(app) {
     res.render("teamlist");
   });
 
-  app.get("/teaminfo", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/teaminfo.html"));
+  app.get("/teaminfo/:id/:uid", function(req, res) {
+    db.Team.findOne({
+      where: {
+        id: req.params.id,
+        UserID: req.params.uid
+      }
+    }).then(function(dbTeam) {
+      //res.render("teaminfo", dbTeam);
+      if (req.user.id == dbTeam.UserId) {
+        /*let members = JSON.parse(dbTeam.members);
+        let DPS = [];
+        let TNK = [];
+        let HLR = [];
+        let UTL = [];
+        let UNK = [];
+        
+        for (x in members) {
+          switch (x.role) :
+        }*/
+
+        res.render("teaminfo", {
+          teamname: dbTeam.name,
+          teamid: dbTeam.id
+        });
+      } else {
+        res.redirect("/teamlist");
+      }
+    });
   });
 
   app.get("/charinfo", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/charinfo.html"));
+    res.render("charinfo");
   });
-
-};
+}

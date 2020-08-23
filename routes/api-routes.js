@@ -90,6 +90,16 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/team/:id", function(req, res) {
+    db.Team.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
   app.delete("/api/teams/:id", function(req, res) {
     console.log("DEBUG LOG: Deleting team at ID: " + req.params.id);
     db.Team.destroy({
@@ -101,7 +111,15 @@ module.exports = function(app) {
     });
   });
 
-  
+  app.get("/api/teaminfo/:id", function(req, res) {
+    db.Team.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbTeam) {
+      res.json(dbTeam);
+    })
+  })
 
 
 };
