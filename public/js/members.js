@@ -22,12 +22,18 @@ $(document).ready(function() {
     handleTeamDelete(event.target.id);
   })
 
+  $("#team-list").on("click", ".team-link", function(event) {
+    console.log("Team Link CLICK");
+    teamInfoTest(event.target.id, uid);
+  })
+
+
   //sends a new team to the Teams table with the user's inputted name
   function handleTeamSubmit(event) {
     event.preventDefault();
 
     let teamname = $("#team-name").val().trim();
-    let members = [];
+    let members = [{id: 0, name: "test", class: "Warrior", role: "DPS"}];
 
     if (!teamname) {
       return;
@@ -58,12 +64,12 @@ $(document).ready(function() {
 
       //Loops through the list, creating a new HTML card for each team
       for (x in teamlist) {
-        let newTeamCard = $("<p>");
-        let deleteButton = $("<button>");
-        deleteButton.text("X");
-        deleteButton.attr("class", "delete-button");
+        let newTeamCard = $(`<div class="team-card"></div>`);
+        let teamName = teamlist[x].name;
+        let teamLink = $(`<a class="team-link" id="${teamlist[x].id}">${teamName}</a>`);
+        let deleteButton = $(`<button class="delete-button">X</button>`);
         deleteButton.attr("id", teamlist[x].id);
-        newTeamCard.text(teamlist[x].name);
+        newTeamCard.append(teamLink);
         newTeamCard.append(deleteButton);
         $("#team-list").append(newTeamCard);
       }
@@ -87,4 +93,11 @@ $(document).ready(function() {
     }).then(function() {getTeamList(uid)});
   }
 
+  //TESTING - DELETE THIS FUNCT -- Teams API GET call for members
+  function teamInfoTest(id, uid) {
+    $.get("/api/teaminfo/" + id, function(data) {
+      console.log(data);
+      window.location.replace("/teaminfo/" + id + "/" + uid);
+    })
+  }
 });
