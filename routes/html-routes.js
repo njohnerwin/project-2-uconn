@@ -5,37 +5,37 @@ var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-  app.get("/", function(req, res) {
+  app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/teamlist");
     }
-    res.render("index");
+    res.render("index", { style: "style.css" });
   });
 
-  app.get("/signup", function(req, res) {
+  app.get("/signup", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/teamlist");
     }
-    res.render("signup"); 
+    res.render("signup", { style: "style.css" });
   });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/teamlist", isAuthenticated, function(req, res) {
-    res.render("teamlist");
+  app.get("/teamlist", isAuthenticated, function (req, res) {
+    res.render("teamlist", { style: "style.css" });
   });
 
-  app.get("/teaminfo/:id/:uid", function(req, res) {
+  app.get("/teaminfo/:id/:uid", function (req, res) {
     db.Team.findOne({
       where: {
         id: req.params.id,
         UserID: req.params.uid
       }
-    }).then(function(dbTeam) {
+    }).then(function (dbTeam) {
       //res.render("teaminfo", dbTeam);
       if (req.user.id == dbTeam.UserId) {
         /*let members = JSON.parse(dbTeam.members);
@@ -51,7 +51,8 @@ module.exports = function(app) {
 
         res.render("teaminfo", {
           teamname: dbTeam.name,
-          teamid: dbTeam.id
+          teamid: dbTeam.id,
+          style: "teaminfo.css"
         });
       } else {
         res.redirect("/teamlist");
@@ -59,7 +60,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/charinfo", function(req, res) {
-    res.render("charinfo");
+  app.get("/charinfo", function (req, res) {
+    res.render("charinfo", { style: "style.css" });
   });
 }
