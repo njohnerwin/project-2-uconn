@@ -6,7 +6,7 @@ body {
 }
 
 .background {
-  background-color: rgb(77, 166, 255);
+  background-color: rgb(219, 142, 54);
   opacity: 0.95;
   filter: a;
   width: 60%;
@@ -14,48 +14,4 @@ body {
   margin-top: 10%;
   padding: 5%;
   border-radius: 10px;
-}
-
-.padding {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.text {
-  text-align: center;
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(65, 74, 99);
-  color: rgb(65, 74, 99);
-  text-align: center;
-}
-
-@media (min-width: 901px) and (max-width: 1100px) {
-  .background {
-    width: 70%;
-  }
-}
-
-@media (min-width: 751px) and (max-width: 900px) {
-  .background {
-    width: 80%;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 750px) {
-  .background {
-    width: 90%;
-  }
-}
-
-@media (max-width: 600px) {
-  .background {
-    width: 100%;
-    border-radius: 0;
-  }
 }

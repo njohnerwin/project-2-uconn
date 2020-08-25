@@ -1,28 +1,28 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
   //We declare user ID in the global scope, but assign its value later
   let uid;
 
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page, as well as passing uid its value
-  $.get("/api/user_data").then(function(data) {
+  $.get("/api/user_data").then(function (data) {
     $(".member-name").text(data.email);
     uid = data.id;
     getTeamList(uid);
   });
 
   //When Submit is clicked, handleTeamSubmit
-  $("#submit-team").on("click", function(event) {
+  $("#submit-team").on("click", function (event) {
     console.log("SUBMIT button clicked!!!");
     handleTeamSubmit(event);
   })
 
-  $("#team-list").on("click", ".delete-button", function(event) {
+  $("#team-list").on("click", ".delete-button", function (event) {
     console.log("DELETE button clicked!!!");
     handleTeamDelete(event.target.id);
   })
 
-  $("#team-list").on("click", ".team-link", function(event) {
+  $("#team-list").on("click", ".team-link", function (event) {
     console.log("Team Link CLICK");
     teamInfoTest(event.target.id, uid);
   })
@@ -33,7 +33,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     let teamname = $("#team-name").val().trim();
-    let members = [{id: 0, name: "test", class: "Warrior", role: "DPS"}];
+    let members = [{ id: 0, name: "test", class: "Warrior", role: "DPS" }];
 
     if (!teamname) {
       return;
@@ -51,7 +51,7 @@ $(document).ready(function() {
   //Teams API GET Call
   function getTeamList(uid) {
 
-    $.get("/api/teams/" + uid, function(data) {
+    $.get("/api/teams/" + uid, function (data) {
       console.log("Successful GET: " + data);
 
       //We empty the team-list div so we can keep it updated properly
@@ -82,7 +82,7 @@ $(document).ready(function() {
       method: "POST",
       url: "api/teams",
       data: newTeam
-    }).then(function() {getTeamList(uid)});
+    }).then(function () { getTeamList(uid) });
   }
 
   //Teams API DELETE call
@@ -90,12 +90,12 @@ $(document).ready(function() {
     $.ajax({
       method: "DELETE",
       url: "/api/teams/" + id
-    }).then(function() {getTeamList(uid)});
+    }).then(function () { getTeamList(uid) });
   }
 
   //TESTING - DELETE THIS FUNCT -- Teams API GET call for members
   function teamInfoTest(id, uid) {
-    $.get("/api/teaminfo/" + id, function(data) {
+    $.get("/api/teaminfo/" + id, function (data) {
       console.log(data);
       window.location.replace("/teaminfo/" + id + "/" + uid);
     })

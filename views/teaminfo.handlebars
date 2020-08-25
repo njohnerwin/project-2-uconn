@@ -1,46 +1,62 @@
-<div class="container">
+<div class="container1">
     <h1 id="team-identify" value="{{teamid}}">{{teamname}}</h1>
 
-    <h2>Tanks</h2>
+    <div class="container">
+        <div class="column active">
+            <div class="content">
+                <h1>Tanks</h1>
+                <div class="box">
+                    <h2>Das Tanks</h2>
+                    <br>
+                    <ul id="tank-list"></ul>
+                </div>
 
-    <ul id="tank-list">
-        <!--
-        {{#each role}}
-        {{#if Tank}}
-        {{> ?/?-block Healer=false DPS=false}}
-        {{/if}}
-        {{/each}}
-        -->
-    </ul>
 
-    <h2>Healers</h2>
 
-    <ul id="heal-list">
-        <!--
-        {{#each role}}
-        {{#if Healer}}
-        {{> ?/?-block Tank=false DPS=false}}
-        {{/if}}
-        {{/each}}
-        -->
-    </ul>
+            </div>
+            <div class="bg bg1"></div>
+        </div>
+        <div class="column">
+            <div class="content">
+                <h1>Healers</h1>
+                <div class="box">
+                    <h2>Healz</h2>
+                    <br>
+                    <ul id="heal-list"></ul>
+                </div>
 
-    <h2>DPS</h2>
-    <ul id="dps-list">
-        <!--
-        {{#each role}}
-        {{#if DPS}}
-        {{> ?/?-block Healer=false Tank=false}}
-        {{/if}}
-        {{/each}}
-        -->
-    </ul>
 
-    <h2>Utility</h2>
-    <ul id="util-list">
+            </div>
+            <div class="bg bg2"></div>
+        </div>
+        <div class="column">
+            <div class="content">
+                <h1>DPS</h1>
+                <div class="box">
+                    <h2>Boom Boom</h2>
+                    <br>
+                    <ul id="dps-list"></ul>
+                </div>
 
-    </ul>
 
+            </div>
+            <div class="bg bg3"></div>
+        </div>
+        <div class="column">
+            <div class="content">
+                <h1>Utility List</h1>
+                <div class="box ">
+                    <h2>Utility</h2>
+                    <br>
+                    <br>
+                    <ul id="util-list"></ul>
+                </div>
+
+
+            </div>
+            <div class="bg bg4"></div>
+        </div>
+    </div>
     <h2>Raid Member</h2>
     <form class="create-form">
 
@@ -87,3 +103,6 @@
 
 <script type="text/javascript" src="/js/navbar.js"></script>
 <script type="text/javascript" src="/js/teaminfo.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script>$(document).on('mouseover', '.container .column', function () { $(this).addClass('active').siblings().removeClass('active') })</script>
