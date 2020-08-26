@@ -1,13 +1,13 @@
-$(document).ready(function() {
-  
+$(document).ready(function () {
+
   /*//TESTING - DELETE THIS FUNCT -- Teams API GET call for members
   function teamInfoTest(id) {
       
   }*/
 
-  
+
   const teamid = $("#team-identify").attr("value");
-  
+
   //Member ID (memid) is held globally to keep track of it consistently when creating new team members
   //memberList is just here to hold the members array in a global scope
   let memid = 0;
@@ -16,19 +16,19 @@ $(document).ready(function() {
   //Gets team info, then 
   //pushes the members array to the global memberList variable
   //and calls function to print the cards for all existing members
-  $.get("/api/team/" + teamid, function(data) {
+  $.get("/api/team/" + teamid, function (data) {
     console.log("Successful GET: " + data.id + data.name + data.members);
     memberList = JSON.parse(data.members);
 
     for (x in memberList) {
       printMemberCard(memberList[x]);
-      
+
       //Increments memid so new member IDs will ultimately be consistent with the list
       memid++;
     }
   });
 
-  $("#add-member").on("click", function() {
+  $("#add-member").on("click", function () {
 
     event.preventDefault();
 
@@ -39,7 +39,7 @@ $(document).ready(function() {
     if (!name || !clss) {
       return;
     }
-    
+
     var newChar = {
       id: memid,
       name: name,
@@ -55,7 +55,7 @@ $(document).ready(function() {
   })
 
   function printMemberCard(member) {
-    let memberCard = $(`<li id="${member.id}">${member.name} || ${member.clss}</li>`);
+    let memberCard = $(`<div class="card-front"id="${member.id}">${member.name} : ${member.clss}<div>`);
 
     if (member.id > 0) {
       switch (member.role) {
@@ -75,8 +75,8 @@ $(document).ready(function() {
           memberCard.attr("clss", "utils");
           $("#util-list").append(memberCard);
           break;
-        }
       }
+    }
   }
 
 
