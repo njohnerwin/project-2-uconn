@@ -1,13 +1,13 @@
-$(document).ready(function () {
-
+$(document).ready(function() {
+  
   /*//TESTING - DELETE THIS FUNCT -- Teams API GET call for members
   function teamInfoTest(id) {
       
   }*/
 
-
+  
   const teamid = $("#team-identify").attr("value");
-
+  
   //Member ID (memid) is held globally to keep track of it consistently when creating new team members
   //memberList is just here to hold the members array in a global scope
   let memid = 0;
@@ -16,19 +16,19 @@ $(document).ready(function () {
   //Gets team info, then 
   //pushes the members array to the global memberList variable
   //and calls function to print the cards for all existing members
-  $.get("/api/team/" + teamid, function (data) {
+  $.get("/api/team/" + teamid, function(data) {
     console.log("Successful GET: " + data.id + data.name + data.members);
     memberList = JSON.parse(data.members);
 
     for (x in memberList) {
       printMemberCard(memberList[x]);
-
+      
       //Increments memid so new member IDs will ultimately be consistent with the list
       memid++;
     }
   });
 
-  $("#add-member").on("click", function () {
+  $("#add-member").on("click", function() {
 
     event.preventDefault();
 
@@ -36,16 +36,24 @@ $(document).ready(function () {
     let clss = $("#char-class").val();
     let role = $("#char-role").val();
 
-    if (!name || !clss) {
+    if (!name || name.length > 12) {
+      alert("Name must be between 1 and 12 characters.")
       return;
     }
-
+    
     var newChar = {
       id: memid,
       name: name,
       clss: clss,
       role: role
     }
+
+    if (newChar.id >= 41) {
+      alert("Team has too many members! Cannot add another (maximum is 40)");
+      return;
+    }     
+
+    memid++;
 
     //We push the new character's info to memberList...
     memberList.push(newChar);
@@ -54,8 +62,16 @@ $(document).ready(function () {
     printMemberCard(newChar);
   })
 
+  $("#save-button").on("click", function() {
+    let update = {
+      members: JSON.stringify(memberList)
+    }
+    console.log("Logging UPDATE from save-button-click: " + update);
+    saveChanges(update);
+  })
+
   function printMemberCard(member) {
-    let memberCard = $(`<div class="card-front"id="${member.id}">${member.name} : ${member.clss}<div>`);
+    let memberCard = $(`<li id="${member.id}">${member.name} || ${member.clss}</li>`);
 
     if (member.id > 0) {
       switch (member.role) {
@@ -75,10 +91,19 @@ $(document).ready(function () {
           memberCard.attr("clss", "utils");
           $("#util-list").append(memberCard);
           break;
+        }
       }
-    }
   }
 
-
+  function saveChanges(update) {
+    console.log("Logging UPDATE from SaveChanges: " + update)
+    $.ajax({
+      method: "PUT",
+      url: "/api/teams/" + teamid,
+      data: update
+    }).then(function() {
+      window.location.href = "/teamlist";
+    })
+  }
 
 })
