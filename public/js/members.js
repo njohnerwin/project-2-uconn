@@ -64,7 +64,7 @@ $(document).ready(function () {
 
       //Loops through the list, creating a new HTML card for each team
       for (x in teamlist) {
-        let newTeamCard = $(`<div class="team-card"></div>`);
+        let newTeamCard = $(`<div class="cube"></div>`);
         let teamName = teamlist[x].name;
         let teamLink = $(`<a class="team-link" id="${teamlist[x].id}">${teamName}</a>`);
         let deleteButton = $(`<button class="delete-button">X</button>`);
