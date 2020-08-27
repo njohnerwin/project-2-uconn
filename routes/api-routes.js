@@ -121,5 +121,13 @@ module.exports = function(app) {
     })
   })
 
+  app.put("/api/teams/:id", function(req, res) {
+    db.Team.update(
+      {members: req.body.members},
+      {returning: true, where: {id: req.params.id} }
+    ).then(function(dbTeam) {
+      res.json(dbTeam);
+    });
+  });
 
 };

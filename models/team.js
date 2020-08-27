@@ -1,3 +1,4 @@
+//Model for the teams. They have a name, are tied to a user ID, and have a list of members (a JSON string)
 module.exports = function(sequelize, DataTypes) {
   var Team = sequelize.define("Team", {
     name: {
@@ -5,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
     members: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     UserId: {
@@ -14,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  //Each Team is owned by one User. A User can have multiple Teams.
   Team.associate = function(models) {
     Team.belongsTo(models.User, {
       foreignKey: {
