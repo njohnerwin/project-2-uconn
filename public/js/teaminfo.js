@@ -1,17 +1,13 @@
 $(document).ready(function() {
   
-  /*//TESTING - DELETE THIS FUNCT -- Teams API GET call for members
-  function teamInfoTest(id) {
-      
-  }*/
-
-  
   const teamid = $("#team-identify").attr("value");
   
   //Member ID (memid) is held globally to keep track of it consistently when creating new team members
   //memberList is just here to hold the members array in a global scope
+  //accesstoken is used with the WoW API
   let memid = 0;
   let memberList;
+  let accesstoken;
 
   //Gets team info, then 
   //pushes the members array to the global memberList variable
@@ -106,4 +102,23 @@ $(document).ready(function() {
     })
   }
 
+  //Pass getWoWProfile a realm and charname - it'll query the API and return that profile
+  function getWoWProfile(realm, charname) {
+    $.get("/api/wow").then(function (data) {
+    
+      //We use the "/api/wow" route to grab the api key from the local files via Node and dotenv - see in api-routes.js for more detail
+      accesstoken = data.accesstoken; 
+  
+      //Query URL is a template literal composed from realm, charname, and access token info
+      let queryURL = `https://us.api.blizzard.com/profile/wow/character/${realm}/${charname}?namespace=profile-us&locale=en_US&access_token=${accesstoken}`;
+  
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        return(response);
+      });
+    });
+  }
 })
