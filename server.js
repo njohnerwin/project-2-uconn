@@ -2,6 +2,10 @@
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
+const BnetStrategy = require('passport-bnet').Strategy;
+const BNET_ID = process.env.BNET_ID
+const BNET_SECRET = process.env.BNET_SECRET
+ 
 
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
