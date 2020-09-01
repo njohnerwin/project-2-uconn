@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
-var db = require("../models");
-var passport = require("../config/passport");
+const db = require("../models");
+const passport = require("../config/passport");
+require("dotenv").config();
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -130,4 +131,9 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/wow", function(req, res) {
+    res.json({
+      accesstoken: process.env.API_KEY,
+    });
+  })
 };
