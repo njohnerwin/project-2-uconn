@@ -5,6 +5,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    realm: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     members: {
       type: DataTypes.TEXT,
       allowNull: false,

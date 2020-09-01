@@ -2,6 +2,10 @@
 const db = require("../models");
 const passport = require("../config/passport");
 require("dotenv").config();
+const BnetStrategy = require('passport-bnet').Strategy;
+const BNET_ID = process.env.BNET_ID
+const BNET_SECRET = process.env.BNET_SECRET
+
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -64,6 +68,7 @@ module.exports = function(app) {
     console.log(req.body);
     db.Team.create({
       name: req.body.name,
+      realm: req.body.realm,
       members: req.body.members,
       UserId: req.body.UserId
     }).then(function(dbTeam) {
