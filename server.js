@@ -5,6 +5,7 @@ const exphbs = require("express-handlebars");
 const BnetStrategy = require('passport-bnet').Strategy;
 const BNET_ID = process.env.BNET_ID
 const BNET_SECRET = process.env.BNET_SECRET
+require("dotenv").config();
  
 
 // Requiring passport as we've configured it
@@ -30,6 +31,8 @@ app.use(passport.session());
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+
+require("./interval.js");
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
