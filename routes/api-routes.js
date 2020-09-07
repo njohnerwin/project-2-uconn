@@ -1,6 +1,11 @@
 // Requiring our models and passport as we've configured it
-var db = require("../models");
-var passport = require("../config/passport");
+const db = require("../models");
+const passport = require("../config/passport");
+require("dotenv").config();
+const BnetStrategy = require('passport-bnet').Strategy;
+const BNET_ID = process.env.BNET_ID
+const BNET_SECRET = process.env.BNET_SECRET
+
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -63,6 +68,7 @@ module.exports = function(app) {
     console.log(req.body);
     db.Team.create({
       name: req.body.name,
+      realm: req.body.realm,
       members: req.body.members,
       UserId: req.body.UserId
     }).then(function(dbTeam) {
@@ -121,5 +127,18 @@ module.exports = function(app) {
     })
   })
 
+  app.put("/api/teams/:id", function(req, res) {
+    db.Team.update(
+      {members: req.body.members},
+      {returning: true, where: {id: req.params.id} }
+    ).then(function(dbTeam) {
+      res.json(dbTeam);
+    });
+  });
 
+  app.get("/api/wow", function(req, res) {
+    res.json({
+      accesstoken: process.env.API_KEY,
+    });
+  })
 };

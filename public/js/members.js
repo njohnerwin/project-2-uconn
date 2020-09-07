@@ -33,14 +33,20 @@ $(document).ready(function () {
     event.preventDefault();
 
     let teamname = $("#team-name").val().trim();
+    let realmname = $("#team-realm").val().trim();
     let members = [{ id: 0, name: "test", class: "Warrior", role: "DPS" }];
 
-    if (!teamname) {
+    let realmslug = (realmname.replace("'", "")).toLowerCase();
+    console.log(realmslug);
+
+    if (!teamname || !realmslug) {
+      alert("One or more required fields was left blank!");
       return;
     }
 
     let newTeam = {
       name: teamname,
+      realm: realmslug,
       members: JSON.stringify(members),
       UserId: uid
     }
