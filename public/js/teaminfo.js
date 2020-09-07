@@ -76,6 +76,6 @@ $(document).ready(function () {
           $("#util-list").append(memberCard);
           break;
       }
-    }
+    }w
   }
 })
