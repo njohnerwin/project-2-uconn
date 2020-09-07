@@ -8,7 +8,7 @@
                 <div class="box">
                     <h2>Das Tanks</h2>
                     <br>
-                    <ul id="tank-list"></ul>
+                    <div class="card" id="tank-list"></div>
                 </div>
 
 
@@ -22,7 +22,7 @@
                 <div class="box">
                     <h2>Healz</h2>
                     <br>
-                    <ul id="heal-list"></ul>
+                    <div class="card" id="heal-list"></div>
                 </div>
 
 
@@ -44,7 +44,7 @@
         </div>
         <div class="column">
             <div class="content">
-                <h1>Utility List</h1>
+                <h1>Utility</h1>
                 <div class="box ">
                     <h2>Utility</h2>
                     <br>
@@ -106,3 +106,4 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
 <script>$(document).on('mouseover', '.container .column', function () { $(this).addClass('active').siblings().removeClass('active') })</script>
+<script>$(document).on('mouseover', '.card-front', function () { $(this).addClass('card-back').siblings().removeClass('card-front') }).trigger('classChange')</script>

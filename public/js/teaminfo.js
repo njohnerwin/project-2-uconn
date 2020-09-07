@@ -1,7 +1,7 @@
-$(document).ready(function() {
-  
+$(document).ready(function () {
+
   const teamid = $("#team-identify").attr("value");
-  
+
   //Member ID (memid) is held globally to keep track of it consistently when creating new team members
   //memberList is just here to hold the members array in a global scope
   //accesstoken is used with the WoW API
@@ -12,19 +12,19 @@ $(document).ready(function() {
   //Gets team info, then 
   //pushes the members array to the global memberList variable
   //and calls function to print the cards for all existing members
-  $.get("/api/team/" + teamid, function(data) {
+  $.get("/api/team/" + teamid, function (data) {
     console.log("Successful GET: " + data.id + data.name + data.members);
     memberList = JSON.parse(data.members);
 
     for (x in memberList) {
       printMemberCard(memberList[x]);
-      
+
       //Increments memid so new member IDs will ultimately be consistent with the list
       memid++;
     }
   });
 
-  $("#add-member").on("click", function() {
+  $("#add-member").on("click", function () {
 
     event.preventDefault();
 
@@ -36,7 +36,7 @@ $(document).ready(function() {
       alert("Name must be between 1 and 12 characters.")
       return;
     }
-    
+
     var newChar = {
       id: memid,
       name: name,
@@ -47,7 +47,7 @@ $(document).ready(function() {
     if (newChar.id >= 41) {
       alert("Team has too many members! Cannot add another (maximum is 40)");
       return;
-    }     
+    }
 
     memid++;
 
@@ -58,7 +58,7 @@ $(document).ready(function() {
     printMemberCard(newChar);
   })
 
-  $("#save-button").on("click", function() {
+  $("#save-button").on("click", function () {
     let update = {
       members: JSON.stringify(memberList)
     }
@@ -67,7 +67,7 @@ $(document).ready(function() {
   })
 
   function printMemberCard(member) {
-    let memberCard = $(`<li id="${member.id}">${member.name} || ${member.clss}</li>`);
+    let memberCard = $(`<div class="card-front" id="${member.id}">${member.name} || ${member.clss}</div>`);
 
     if (member.id > 0) {
       switch (member.role) {
@@ -87,8 +87,8 @@ $(document).ready(function() {
           memberCard.attr("clss", "utils");
           $("#util-list").append(memberCard);
           break;
-        }
       }
+    }
   }
 
   function saveChanges(update) {
@@ -97,7 +97,7 @@ $(document).ready(function() {
       method: "PUT",
       url: "/api/teams/" + teamid,
       data: update
-    }).then(function() {
+    }).then(function () {
       window.location.href = "/teamlist";
     })
   }
@@ -105,19 +105,19 @@ $(document).ready(function() {
   //Pass getWoWProfile a realm and charname - it'll query the API and return that profile
   function getWoWProfile(realm, charname) {
     $.get("/api/wow").then(function (data) {
-    
+
       //We use the "/api/wow" route to grab the api key from the local files via Node and dotenv - see in api-routes.js for more detail
-      accesstoken = data.accesstoken; 
-  
+      accesstoken = data.accesstoken;
+
       //Query URL is a template literal composed from realm, charname, and access token info
       let queryURL = `https://us.api.blizzard.com/profile/wow/character/${realm}/${charname}?namespace=profile-us&locale=en_US&access_token=${accesstoken}`;
-  
+
       $.ajax({
         url: queryURL,
         method: "GET"
-      }).then(function(response) {
+      }).then(function (response) {
         console.log(response);
-        return(response);
+        return (response);
       });
     });
   }
