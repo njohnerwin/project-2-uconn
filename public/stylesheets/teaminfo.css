@@ -7,16 +7,6 @@
     text-align: center;
   }
   
-  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: rgb(65, 74, 99);
-    color: rgb(65, 74, 99);
-    text-align: center;
-  }
-  
   @media (min-width: 901px) and (max-width: 1100px) {
     .background {
       width: 70%;
@@ -48,12 +38,13 @@
     ;
     overflow: hidden;
   }
-  
+
   .container .column {
     width: 25%;
     height: 100%;
     float: left;
-    border-right: 0 box-sizing: border-box;
+    border-right: 0;
+    box-sizing: border-box;
     z-index: 1;
   }
   
@@ -76,9 +67,9 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    color: rgba(255, 255, 255, .2);
     font-size: 2em;
-    border-top: transparent border-bottom:transparent
+    border-top: transparent;
+    border-bottom:transparent;
   }
   
   .container .column .content .box {
@@ -87,7 +78,7 @@
     transform: translateY(100%);
     box-sizing: border-box;
     padding: 40px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color:#2c2b2b;
     text-align: center;
     transition: 0.5s;
     opacity: 0;
@@ -96,7 +87,7 @@
   .container .column.active .content .box {
     opacity: 1;
     transform: translateY(-50%);
-    border-radius: 30px/10px
+    border-radius: 30px/10px;
   }
   
   .container .column .content h2 {
@@ -121,7 +112,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 130%;
     pointer-events: none;
     z-index: -1;
   }
@@ -163,8 +154,8 @@
   }
   .card-back{
     background-color: tomato;
-    width: 200px;
-    height: 200px;
+    width: 50px;
+    height: 50px;
 }
 
 .card:hover > .card-front{
@@ -173,3 +164,22 @@
 .card:hover > .card-back{
   transform: perspective(50px) rotateY(180deg);
 }
+.form-control{
+background-color:#2c2b2b ;
+}
+.team-name{
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.form-group{
+  margin-right: 400px;
+  margin-left: 400px;
+  margin-bottom: 10px;
+}
+
+.container1{
+  margin-bottom: 10%;
+}
+.buttons{margin-left: 400px;
+margin-top: 10px}
