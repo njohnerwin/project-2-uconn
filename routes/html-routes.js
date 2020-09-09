@@ -53,6 +53,7 @@ module.exports = function (app) {
         res.render("teaminfo", {
           teamname: dbTeam.name,
           teamid: dbTeam.id,
+          teamrealm: dbTeam.realm,
           style: "teaminfo.css"
         });
       } else {
