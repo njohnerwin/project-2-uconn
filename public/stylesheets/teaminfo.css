@@ -170,12 +170,13 @@ background-color:#2c2b2b ;
 .team-name{
   margin-top: 40px;
   margin-left: 40px;
+  font-size: 100px;
 }
 
 .form-group{
   margin-right: 400px;
   margin-left: 400px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .container1{
@@ -183,3 +184,7 @@ background-color:#2c2b2b ;
 }
 .buttons{margin-left: 400px;
 margin-top: 10px}
+
+.raid-member{
+margin-left: 42%;
+}
