@@ -8,12 +8,14 @@ $(document).ready(function () {
   let memid = 0;
   let memberList;
   let accesstoken;
+  let realmslug;
 
   //Gets team info, then 
   //pushes the members array to the global memberList variable
   //and calls function to print the cards for all existing members
   $.get("/api/team/" + teamid, function (data) {
-    console.log("Successful GET: " + data.id + data.name + data.members);
+    console.log("Successful GET: " + data.id + data.name + data.realm + data.members);
+    realmslug = data.realm;
     memberList = JSON.parse(data.members);
 
     for (x in memberList) {
