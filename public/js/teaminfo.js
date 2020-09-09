@@ -67,7 +67,7 @@ $(document).ready(function () {
   })
 
   function printMemberCard(member) {
-    let memberCard = $(`<div class="card-front" id="${member.id}">${member.name} || ${member.clss}</div>`);
+    let memberCard = $(`<div class="card-front" id="${member.id}">${member.name} - ${member.clss}</div>`);
 
     if (member.id > 0) {
       switch (member.role) {
@@ -121,4 +121,5 @@ $(document).ready(function () {
       });
     });
   }
+  $("card-front").hover(getWoWProfile)
 })
