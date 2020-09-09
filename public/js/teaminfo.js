@@ -105,14 +105,14 @@ $(document).ready(function () {
   }
 
   //Pass getWoWProfile a realm and charname - it'll query the API and return that profile
-  function getWoWProfile(realm, charname) {
+  function getWoWProfile(realmslug, charname) {
     $.get("/api/wow").then(function (data) {
 
       //We use the "/api/wow" route to grab the api key from the local files via Node and dotenv - see in api-routes.js for more detail
       accesstoken = data.accesstoken;
 
       //Query URL is a template literal composed from realm, charname, and access token info
-      let queryURL = `https://us.api.blizzard.com/profile/wow/character/${realm}/${charname}?namespace=profile-us&locale=en_US&access_token=${accesstoken}`;
+      let queryURL = `https://us.api.blizzard.com/profile/wow/character/${realmslug}/${charname}?namespace=profile-us&locale=en_US&access_token=${accesstoken}`;
 
       $.ajax({
         url: queryURL,
