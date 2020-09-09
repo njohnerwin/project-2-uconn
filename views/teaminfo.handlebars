@@ -1,5 +1,5 @@
-<div class="container1">
-    <h1 id="team-identify" value="{{teamid}}">{{teamname}}</h1>
+<div class="wrap">
+    <h1 class="team-name" id="team-identify" value="{{teamid}}">{{teamname}}</h1>
 
     <div class="container">
         <div class="column active">
@@ -57,35 +57,36 @@
             <div class="bg bg4"></div>
         </div>
     </div>
-    <h2>Raid Member</h2>
-    <form class="create-form">
-
+    <form class="form-control">
+        <h2>Raid Member</h2>
         <div class="form-group">
             <label for="char-name">Character Name:</label>
-            <input type="text" id="char-name" name="char-name">
+            <input class="input label rounded orange" type="text" id="char-name" name="char-name">
         </div>
 
         <div class="form-group">
-            <label for="char-class">Class:</label>
-            <select id="char-class" name="char-class">
-                <option>Warrior</option>
-                <option>Hunter</option>
-                <option>Priest</option>
-                <option>Rogue</option>
-                <option>Mage</option>
-                <option>Warlock</option>
-                <option>Druid</option>
-                <option>Paladin</option>
-                <option>Shaman</option>
-                <option>Death Knight</option>
-                <option>Monk</option>
-                <option>Demon Hunter</option>
-            </select>
+            <label class="orange-label" for="char-class">Class:</label>
+            <span class="orange-icon">
+                <select class="rounded orange" id="char-class" name="char-class">
+                    <option>Warrior</option>
+                    <option>Hunter</option>
+                    <option>Priest</option>
+                    <option>Rogue</option>
+                    <option>Mage</option>
+                    <option>Warlock</option>
+                    <option>Druid</option>
+                    <option>Paladin</option>
+                    <option>Shaman</option>
+                    <option>Death Knight</option>
+                    <option>Monk</option>
+                    <option>Demon Hunter</option>
+                </select>
+            </span>
         </div>
 
         <div class="form-group">
             <label for="char-role">Choose a role:</label>
-            <select id="char-role" name="char-role">
+            <select class="rounded orange" id="char-role" name="char-role">
                 <option>DPS</option>
                 <option>Tank</option>
                 <option>Healer</option>
@@ -93,12 +94,10 @@
             </select>
         </div>
 
-        <button type="submit" id="add-member">Add</button>
+        <button class="buttons" type="submit" id="add-member">Add</button>
+        <button class="buttons" id="save-button">Save Team</button>
+        <a class="buttons" href="/teamlist">Your Teams</a>;
     </form>
-
-    <button id="save-button">Save Changes</button>
-
-    <a href="/teamlist">Back to Team List</a>;
 </div>
 
 <script type="text/javascript" src="/js/navbar.js"></script>
@@ -106,4 +105,4 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
 <script>$(document).on('mouseover', '.container .column', function () { $(this).addClass('active').siblings().removeClass('active') })</script>
-<script>$(document).on('mouseover', '.card-front', function () { $(this).addClass('card-back').siblings().removeClass('card-front') }).trigger('classChange')</script>
+<script>$(document).on('mouseover', '.card-front', function () { $(this).addClass('card-back').siblings().removeClass('card-front') })</script>
