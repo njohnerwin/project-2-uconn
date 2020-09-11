@@ -1,11 +1,11 @@
 .padding {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
   
-  .text {
-    text-align: center;
-  }
+.text {
+  text-align: center;
+}
   
   @media (min-width: 901px) and (max-width: 1100px) {
     .background {
@@ -75,18 +75,14 @@
   .container .column .content .box {
     position: absolute;
     top: 50%;
-    transform: translateY(100%);
+    transform: translateY(-50%);
     box-sizing: border-box;
-    padding: 40px;
+    padding: 30px;
+    width: 90%;
     background-color:#2c2b2b;
     text-align: center;
     transition: 0.5s;
-    opacity: 0;
-  }
-  
-  .container .column.active .content .box {
     opacity: 1;
-    transform: translateY(-50%);
     border-radius: 30px/10px;
   }
   
@@ -94,7 +90,7 @@
   
     margin: 0;
     padding: 0;
-    color: #262626;
+    color: #ffffff;
     font-size: 30px;
     font-style: italic;
   
@@ -152,34 +148,95 @@
     background-attachment: fixed;
     transition: .5s
   }
-  .card-back{
-    background-color: tomato;
-    width: 50px;
-    height: 50px;
+
+.squad-list {
+  margin: 5px auto;
 }
 
-.card:hover > .card-front{
-  transform: perspective(50px) rotateY(-180deg);
+#tank-list {
+  background-color: #c58255;
 }
-.card:hover > .card-back{
-  transform: perspective(50px) rotateY(180deg);
+
+#heal-list {
+  background-color: #77b16a;
 }
-.form-control{
+
+#dps-list {
+  background-color: #be7ab9;
+}
+
+#util-list {
+  background-color: #7599cf;
+}
+
+.member-card {
+  padding: 5px;
+  border: 1px solid #27272778;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.731);
+}
+
+.active, .member-card:hover {
+  color: rgb(255, 255, 255);
+}
+
+.card-content {
+  overflow: hidden;
+  width: 100%;
+  text-align: left;
+  max-height: 0;
+  color: white;
+  transition: max-height 0.2s ease-out;
+}
+
+.card-content p {
+  color: white;
+  padding: 5px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+#tank-list .card-content {
+  background-color: #9b6643;
+}
+
+#heal-list .card-content {
+  background-color: #598550;
+}
+
+#dps-list .card-content {
+  background-color: #8d5b8a;
+}
+
+#util-list .card-content {
+  background-color: #536d94;
+}
+
+.form-control {
 background-color:#2c2b2b ;
 }
-.team-name{
+
+.team-name {
   margin-top: 40px;
   margin-left: 40px;
 }
 
-.form-group{
+.form-group {
   margin-right: 400px;
   margin-left: 400px;
   margin-bottom: 10px;
 }
 
-.container1{
+.container1 {
   margin-bottom: 10%;
 }
-.buttons{margin-left: 400px;
-margin-top: 10px}
+
+.buttons {
+  margin-left: 400px;
+  margin-top: 10px
+}
