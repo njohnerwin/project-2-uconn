@@ -27,6 +27,7 @@ $(document).ready(function () {
     }
   });
 
+  //This pulls values from the input fields and uses it to push a new member to the live memberList array
   $("#add-member").on("click", function () {
 
     event.preventDefault();
@@ -61,6 +62,7 @@ $(document).ready(function () {
     printMemberCard(newChar);
   })
 
+  //Saves changes made to the memberList array
   $("#save-button").on("click", function () {
     let update = {
       members: JSON.stringify(memberList)
@@ -69,7 +71,8 @@ $(document).ready(function () {
     saveChanges(update);
   })
 
-  $(".column").on("click", ".member-card", async function(event) {
+  //Expands and calls for WoW Profile API information on the selected user
+  $(".column").on("click", ".member-card", function(event) {
     this.classList.toggle("active");
     let content = this.nextElementSibling;
     if (content.style.maxHeight) {
@@ -82,11 +85,33 @@ $(document).ready(function () {
     }  
   });
 
+  //Deletes the selected user and immediately saves changes
+  $(".column").on("click", ".member-delete", function(event) {
+    if (confirm("Are you sure you want to delete? (Changes will be saved)") == true) {
+      for (x in memberList) {
+        if (memberList[x].id == this.id) {
+          console.log(memberList[x].id);
+          memberList.splice(x, 1);
+        }
+      }
+      let update = {
+        members: JSON.stringify(memberList)
+      }
+      console.log("Logging UPDATE from save-button-click: " + update);
+      saveChanges(update);
+    };
+  });
+
+  //The function used to create and render new "cards" for each member on the team
   function printMemberCard(member) {
+    //Builds the distinct HTML pieces of the member card...
     let nameID = (member.name).toLowerCase();
     let memberCard = $(`<div class="member-card" id="${nameID}">${member.name} || ${member.clss}</div>`);
     let cardContent = $(`<div class="card-content" id="${nameID}-content"></div>`)
+    let deleteButton = $(`<button class="member-delete" id="${member.id}">X</button>`);
 
+    //...then constructs it step by step...
+    memberCard.append(deleteButton);
     cardContent.append($(`<p class="datapoint" id=${nameID}-race>Race: </p>`));
     cardContent.append($(`<p class="datapoint" id="${nameID}-gender">Gender: </p>`));
     cardContent.append($(`<p class="datapoint" id="${nameID}-spec">Spec: </p>`));
@@ -94,6 +119,7 @@ $(document).ready(function () {
     cardContent.append($(`<p class="datapoint" id="${nameID}-ilvl">ILVL: </p>`));
     cardContent.append($(`<p class="sys-message" id="${nameID}-sys">No data for ${member.name}</p>`))
 
+    //...and appends it to the appropriate list based on role.
     if (member.id > 0) {
       switch (member.role) {
         case "Tank":
@@ -120,6 +146,7 @@ $(document).ready(function () {
     }
   }
 
+  //The function used to convert the live memberList to a JSON string and push those changes to the database
   function saveChanges(update) {
     console.log("Logging UPDATE from SaveChanges: " + update)
     $.ajax({
@@ -127,11 +154,11 @@ $(document).ready(function () {
       url: "/api/teams/" + teamid,
       data: update
     }).then(function () {
-      window.location.href = "/teamlist";
+      location.reload();
     })
   }
 
-  //Pass getWoWProfile a realm and charname - it'll query the API and return that profile
+  //Pass getWoWProfile a realm and charname - it'll query the API and return that profile (testing function)
   function getWoWProfile(realmslug, charname) {
     $.get("/api/wow").then(function (data) {
 
@@ -151,6 +178,7 @@ $(document).ready(function () {
     });
   }
 
+  //Similar to getWoWProfile, but repurposed to actually render the data to the fields on the character card
   function printWoWProfile(realm, charname) {
     $.get("/api/wow").then(function (data) {
 
