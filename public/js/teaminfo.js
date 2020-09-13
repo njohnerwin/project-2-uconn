@@ -70,11 +70,12 @@ $(document).ready(function () {
     console.log("Logging UPDATE from save-button-click: " + update);
     saveChanges(update);
   })
-
+  
   //Expands and calls for WoW Profile API information on the selected user
   $(".column").on("click", ".member-card", function(event) {
     this.classList.toggle("active");
     let content = this.nextElementSibling;
+    
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
     } else {
