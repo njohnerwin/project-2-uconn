@@ -29,6 +29,7 @@ body {
     height: 200px;
     transform-style: preserve-3d;
     transition: transform 2s ease;
+    margin-bottom: 10px;
 }
 
 .cube:hover{
