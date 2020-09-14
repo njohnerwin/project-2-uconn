@@ -9,7 +9,8 @@ $(document).ready(function () {
   let memberList;
   let accesstoken;
   let realmslug;
-
+  
+  
   //Gets team info, then 
   //pushes the members array to the global memberList variable
   //and calls function to print the cards for all existing members
@@ -73,18 +74,29 @@ $(document).ready(function () {
   
   //Expands and calls for WoW Profile API information on the selected user
   $(".column").on("click", ".member-card", function(event) {
-    this.classList.toggle("active");
-    let content = this.nextElementSibling;
-    
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
+
+      if ($(".column").find(".member-card").hasClass('active')){
+        $(".column").find(".active").next().css({"max-height": "0px"}) 
+        boxActive = $(".column").find(".active").attr("id");
+        if (boxActive === `${this.id}`){
+          
+          this.classList.toggle("active");
+          return;
+        }
+        else{
+          $(".column").find(".member-card").removeClass('active');
+        }
+      }
+      this.classList.toggle("active");
+      let content = this.nextElementSibling;
       content.style.maxHeight = content.scrollHeight + "px";
+     
       if ($(`#${this.id}-sys`).attr("data-success") == "true") {
         return;
       } printWoWProfile(realmslug, this.id);
     }  
-  });
+    
+  );
 
   //Deletes the selected user and immediately saves changes
   $(".column").on("click", ".member-delete", function(event) {
