@@ -4,68 +4,54 @@
     <div class="container">
         <div class="column active">
             <div class="content">
-                <h1>Tanks</h1>
                 <div class="box">
                     <h2>Das Tanks</h2>
                     <br>
-                    <div class="card" id="tank-list"></div>
+                    <div class="squad-list" id="tank-list"></div>
                 </div>
-
-
-
             </div>
             <div class="bg bg1"></div>
         </div>
         <div class="column">
             <div class="content">
-                <h1>Healers</h1>
                 <div class="box">
                     <h2>Healz</h2>
                     <br>
-                    <div class="card" id="heal-list"></div>
+                    <div class="squad-list" id="heal-list"></div>
                 </div>
-
-
             </div>
             <div class="bg bg2"></div>
         </div>
         <div class="column">
             <div class="content">
-                <h1>DPS</h1>
                 <div class="box">
                     <h2>Boom Boom</h2>
                     <br>
-                    <div class="card" id="dps-list"></div>
+                    <div class="squad-list" id="dps-list"></div>
                 </div>
-
-
             </div>
             <div class="bg bg3"></div>
         </div>
         <div class="column">
             <div class="content">
-                <h1>Utility</h1>
-                <div class="box ">
+                <div class="box">
                     <h2>Utility</h2>
                     <br>
-                    <br>
-                    <div class="card" id="util-list"></div>
+                    <div class="squad-list" id="util-list"></div>
                 </div>
-
-
             </div>
             <div class="bg bg4"></div>
         </div>
     </div>
     <form class="form-control">
-        <h2 class="raid-member">Raid Member</h2>
+        <h2 class="raidMember">Add Raid Member</h2>
         <div class="form-group">
-            <label for="char-name">Character Name:</label>
+            <label for="char-name"><strong>Character Name:</strong></label>
             <input class="input label rounded orange" type="text" id="char-name" name="char-name">
         </div>
 
         <div class="form-group">
-            <label class="orange-label" for="char-class">Class:</label>
+            <label class="orange-label" for="char-class"><strong>Class:</strong></label>
             <span class="orange-icon">
                 <select class="rounded orange" id="char-class" name="char-class">
                     <option>Warrior</option>
@@ -85,7 +71,7 @@
         </div>
 
         <div class="form-group">
-            <label for="char-role">Choose a role:</label>
+            <label for="char-role"><strong>Choose a Role:</strong></label>
             <select class="rounded orange" id="char-role" name="char-role">
                 <option>DPS</option>
                 <option>Tank</option>
@@ -94,15 +80,14 @@
             </select>
         </div>
 
-        <button class="buttons" type="submit" id="add-member">Add</button>
+        <button class="green" type="submit" id="add-member">Add</button>
+        <br>
         <button class="buttons" id="save-button">Save Team</button>
-        <a class="buttons" href="/teamlist">Your Teams</a>;
+        <button type="button" class="buttons" onclick=location.href='/teamlist' id="view-team">View Teams</button>
+
     </form>
 </div>
 
 <script type="text/javascript" src="/js/navbar.js"></script>
 <script type="text/javascript" src="/js/teaminfo.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
 <script>$(document).on('mouseover', '.container .column', function () { $(this).addClass('active').siblings().removeClass('active') })</script>
-<script>$(document).on('mouseover', '.card-front', function () { $(this).addClass('card-back').siblings().removeClass('card-front') })</script>
