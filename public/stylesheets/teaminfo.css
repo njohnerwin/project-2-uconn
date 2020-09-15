@@ -209,13 +209,13 @@ background-color:#414a63;
 
 .team-name{
   background-size: 40px;
-  background-color: rgb(21, 87, 185);
   width: fit-content;
   height: fit-content;
   padding: 20px;
   border-radius: 20px;
   margin-top: 40px;
   margin-left: 40px;
+  font-size: 100px;
 }
 
 .form-group {

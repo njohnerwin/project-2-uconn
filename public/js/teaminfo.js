@@ -9,8 +9,8 @@ $(document).ready(function () {
   let memberList;
   let accesstoken;
   let realmslug;
-  
-  
+
+
   //Gets team info, then 
   //pushes the members array to the global memberList variable
   //and calls function to print the cards for all existing members
@@ -71,35 +71,35 @@ $(document).ready(function () {
     console.log("Logging UPDATE from save-button-click: " + update);
     saveChanges(update);
   })
-  
-  //Expands and calls for WoW Profile API information on the selected user
-  $(".column").on("click", ".member-card", function(event) {
 
-      if ($(".column").find(".member-card").hasClass('active')){
-        $(".column").find(".active").next().css({"max-height": "0px"}) 
-        boxActive = $(".column").find(".active").attr("id");
-        if (boxActive === `${this.id}`){
-          
-          this.classList.toggle("active");
-          return;
-        }
-        else{
-          $(".column").find(".member-card").removeClass('active');
-        }
-      }
-      this.classList.toggle("active");
-      let content = this.nextElementSibling;
-      content.style.maxHeight = content.scrollHeight + "px";
-     
-      if ($(`#${this.id}-sys`).attr("data-success") == "true") {
+  //Expands and calls for WoW Profile API information on the selected user
+  $(".column").on("click", ".member-card", function (event) {
+
+    if ($(".column").find(".member-card").hasClass('active')) {
+      $(".column").find(".active").next().css({ "max-height": "0px" })
+      boxActive = $(".column").find(".active").attr("id");
+      if (boxActive === `${this.id}`) {
+
+        this.classList.toggle("active");
         return;
-      } printWoWProfile(realmslug, this.id);
-    }  
-    
+      }
+      else {
+        $(".column").find(".member-card").removeClass('active');
+      }
+    }
+    this.classList.toggle("active");
+    let content = this.nextElementSibling;
+    content.style.maxHeight = content.scrollHeight + "px";
+
+    if ($(`#${this.id}-sys`).attr("data-success") == "true") {
+      return;
+    } printWoWProfile(realmslug, this.id);
+  }
+
   );
 
   //Deletes the selected user and immediately saves changes
-  $(".column").on("click", ".member-delete", function(event) {
+  $(".column").on("click", ".member-delete", function (event) {
     if (confirm("Are you sure you want to delete? (Changes will be saved)") == true) {
       for (x in memberList) {
         if (memberList[x].id == this.id) {
@@ -204,11 +204,11 @@ $(document).ready(function () {
       $.ajax({
         url: queryURL,
         method: "GET",
-        error: function() {
+        error: function () {
           console.log("Error looking up that stuff");
           $(`#${charname}-content`).addClass("card-content-dead");
         }
-      }).then(function(response) {
+      }).then(function (response) {
         console.log(response);
         $(`#${charname}-race`).append(response.race.name);
         $(`#${charname}-gender`).append(response.gender.name);

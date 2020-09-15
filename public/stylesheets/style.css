@@ -27,8 +27,14 @@ margin-bottom: 10px;
 
 }
 
-h2{
-
-
-  
+.team-link.yellow{
+  width: 700px;
+  height: 50px;
+margin-bottom: 10px;
+}
+.team-list{
+  margin-bottom: 30px;
+}
+.team-input{
+  border-radius: 25px;
 }
