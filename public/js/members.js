@@ -23,6 +23,7 @@ $(document).ready(function () {
   })
 
   $("#team-list").on("click", ".team-link", function (event) {
+    event.preventDefault();
     console.log("Team Link CLICK");
     teamInfoTest(event.target.id, uid);
   })
