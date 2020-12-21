@@ -9,7 +9,7 @@ A SQL-based website designed for users of the video game 'World of Warcraft' to 
 
 ## Usage
 
-Check out the live Heroku deployment at (link here)
+Check out the live Heroku deployment at https://wow-raidbuilder.herokuapp.com/
 
 ## Contributing
 
