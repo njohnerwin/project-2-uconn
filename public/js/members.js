@@ -73,8 +73,8 @@ $(document).ready(function () {
       for (x in teamlist) {
         let newTeamCard = $(`<div class="team"></div>`);
         let teamName = teamlist[x].name;
-        let teamLink = $(`<button class="team-link yellow" id="${teamlist[x].id}">${teamName}</button>`);
-        let deleteButton = $(`<button class="delete-button red">X</button>`);
+        let teamLink = $(`<button class="team-link" id="${teamlist[x].id}">${teamName}</button>`);
+        let deleteButton = $(`<button class="delete-button">X</button>`);
         deleteButton.attr("id", teamlist[x].id);
         newTeamCard.append(teamLink);
         newTeamCard.append(deleteButton);

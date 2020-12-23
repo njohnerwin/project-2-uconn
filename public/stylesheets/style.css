@@ -1,40 +1,79 @@
 body {
-  background-image: url("Deathwing.jpg"); 
+  background-image: url("battlenetbg.jpg"); 
   background-size: cover;
   background-color: black;
   background-repeat: no-repeat;
 }
 
+h3 {
+  font-size: 16px;
+  color: white;
+  font-family: 'Segoe-UI';
+  margin: 10px;
+}
+
 .background {
-  background-color: rgb(219, 142, 54);
+  background-color: #225282;
   opacity: 0.95;
   filter: a;
   width: 60%;
   margin: auto;
   margin-top: 10%;
-  padding: 5%;
+  padding: 30px;
   border-radius: 10px;
 }
+
 .cube{
-
-margin-bottom: 10px;
-
+  margin-bottom: 10px;
 }
 
 .team-input{
-
   padding: 8px;
-
 }
 
-.team-link.yellow{
-  width: 700px;
+.team-link {
+  width: 80%;
+  margin: auto;
+  float: left;
   height: 50px;
-margin-bottom: 10px;
+  margin-left: 5%;
+  margin-bottom: 10px;
+  background-color: #1a2235;
 }
-.team-list{
+
+.delete-button {
+  width: 10%;
+  height: 50px;
+  margin: auto;
+  float: left;
+}
+
+.field-label {
+  color: white;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+}
+
+#login-button {
+  background-color: #1a2235;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-family: 'Segoe UI';
+  font-size: 12px;
+  margin: 0 auto;
+}
+
+.team-list  {
   margin-bottom: 30px;
 }
-.team-input{
+
+.team-input {
   border-radius: 25px;
+  border: none;
+  width: 30%;
+}
+
+#submit-team {
+  margin: 5px;
 }

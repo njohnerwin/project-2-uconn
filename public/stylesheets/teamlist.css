@@ -1,12 +1,12 @@
 body {
-    background-image: url("Deathwing.jpg"); 
+    background-image: url("battlenetbg.jpg"); 
     background-size: cover;
     background-color: black;
     background-repeat: no-repeat;
   }
   
   .background {
-    background-color: rgb(219, 142, 54);
+    background-color: #225282;
     opacity: 0.95;
     filter: a;
     width: 60%;
